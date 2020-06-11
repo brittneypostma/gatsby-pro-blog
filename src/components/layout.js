@@ -36,10 +36,7 @@ const Layout = ({ children }) => {
           href="http://gatsby-pro-series-1-blog.netlify.app"
         />
       </Helmet>
-      <Header
-        title={data.site.siteMetadata.title}
-        description={data.site.siteMetadata.description}
-      />
+      <Header />
       <div
         style={{
           margin: `0 auto`,

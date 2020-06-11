@@ -2,12 +2,15 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import styled from "styled-components"
-
+import Image from "./image"
 import logo from "../images/logo.svg"
 
 const HeaderWrapper = styled.header`
   background: #524763;
   margin-bottom: 1.45rem;
+  overflow: hidden;
+  position: relative;
+  height: 70vh;
   h1 {
     img {
       height: 80px;
@@ -19,6 +22,8 @@ const HeaderContainer = styled.div`
   margin: 0 auto;
   max-width: 960px;
   padding: 1.45rem 1.0875rem;
+  position: relative;
+  z-index: 2;
 `
 
 const Header = ({ siteTitle }) => (
@@ -47,6 +52,7 @@ const Header = ({ siteTitle }) => (
         </ul>
       </nav>
     </HeaderContainer>
+    <Image />
   </HeaderWrapper>
 )
 

@@ -1,20 +1,35 @@
 import React from "react"
-import Img from "gatsby-image"
-import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import PostList from "../components/PostList"
+import { useStaticQuery, graphql } from "gatsby"
 
-const IndexPage = ({ title, description }) => {
+const IndexPage = () => {
+  const data = useStaticQuery(graphql`
+    query getMarkdown {
+      markdown: allMarkdownRemark {
+        edges {
+          node {
+            id
+            frontmatter {
+              title
+              date(formatString: "MMMM DD YYYY")
+            }
+            html
+            excerpt(pruneLength: 280)
+          }
+        }
+      }
+    }
+  `)
+
   return (
     <Layout>
       <SEO title="Home" />
-      <h1>Hi people</h1>
-      <Image />
-      <p>{title}</p>
-      <p>{description}</p>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
+      <h2>Posts</h2>
+      {data.markdown.edges.map(({ node }) => (
+        <PostList key={node.id} post={node} />
+      ))}
     </Layout>
   )
 }
